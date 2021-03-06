@@ -74,7 +74,7 @@ def vertices(x1, y1, z1, x2, y2, z2, x3, y3, z3, r, g, b, x, y):
                         ))
 
 
-def render_object(color_r, color_g, color_b, location_x, location_y):
+def render_object1(color_r, color_g, color_b, location_x, location_y):
     for z in range(len(object1)):
         if object1[z][9] == 5:
             if cameraY >= 40:
@@ -112,6 +112,44 @@ def render_object(color_r, color_g, color_b, location_x, location_y):
                      location_x, location_y)
 
 
+def render_object2(color_r, color_g, color_b, location_x, location_y):
+    for z in range(len(object2)):
+        if object2[z][9] == 5:
+            if cameraY >= 40:
+                vertices(object2[z][0], object2[z][1], object2[z][2],
+                         object2[z][3], object2[z][4], object2[z][5],
+                         object2[z][6], object2[z][7], object2[z][8],
+                         color_r, color_g, color_b,
+                         location_x, location_y)
+        if object2[z][9] == 3:
+            if cameraY <= -40:
+                vertices(object2[z][0], object2[z][1], object2[z][2],
+                         object2[z][3], object2[z][4], object2[z][5],
+                         object2[z][6], object2[z][7], object2[z][8],
+                         color_r - 100, color_g - 200, color_b - 200,
+                         location_x, location_y)
+        if object2[z][9] == 2:
+            if cameraX >= 35:
+                vertices(object2[z][0], object2[z][1], object2[z][2],
+                         object2[z][3], object2[z][4], object2[z][5],
+                         object2[z][6], object2[z][7], object2[z][8],
+                         color_r - 100, color_g - 100, color_b - 100,
+                         location_x, location_y)
+        if object2[z][9] == 4:
+            if cameraX <= -35:
+                vertices(object2[z][0], object2[z][1], object2[z][2],
+                         object2[z][3], object2[z][4], object2[z][5],
+                         object2[z][6], object2[z][7], object2[z][8],
+                         color_r - 10, color_g - 10, color_b - 10,
+                         location_x, location_y)
+        if object2[z][9] == 1:
+            vertices(object2[z][0], object2[z][1], object2[z][2],
+                     object2[z][3], object2[z][4], object2[z][5],
+                     object2[z][6], object2[z][7], object2[z][8],
+                     color_r - 50, color_g - 50, color_b - 50,
+                     location_x, location_y)
+
+
 run = True
 while run:
     win.fill((0, 0, 0))
@@ -127,7 +165,8 @@ while run:
     if keys[pygame.K_s] or keys[pygame.K_DOWN]:
         cameraY = cameraY + vel
 
-    render_object(100, 255, 255, 0, 0)
+    render_object1(100, 255, 255, 0, 0)
+    render_object2(100, 255, 255, 0, -200)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
