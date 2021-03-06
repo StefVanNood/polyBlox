@@ -12,17 +12,37 @@ cameraY = 0
 vel = 5
 
 
-def vertices(x1, y1, z1, x2, y2, z2, x3, y3, z3, r, g, b):
+def vertices(x1, y1, z1, x2, y2, z2, x3, y3, z3, r, g, b, x, y, z):
     surface = pygame.display.get_surface()
     x_width, y_width = surface.get_width(), surface.get_height()
+    z_speed = 200
+    if (cameraX / ((z1.__abs__() / 100) + 1)).__abs__() >= z1 and \
+            not z1 == 1:
+        z_speed = z1
+    if (cameraY / ((z1.__abs__() / 100) + 1)).__abs__() >= z1 and \
+            not z1 == 1:
+        z_speed = z1
+    if (cameraX / ((z2.__abs__() / 100) + 1)).__abs__() >= z2 and \
+            not z2 == 1:
+        z_speed = z2
+    if (cameraY / ((z2.__abs__() / 100) + 1)).__abs__() >= z2 and \
+            not z2 == 1:
+        z_speed = z2
+    if (cameraX / ((z3.__abs__() / 100) + 1)).__abs__() >= z3 and \
+            not z3 == 1:
+        z_speed = z3
+    if (cameraY / ((z3.__abs__() / 100) + 1)).__abs__() >= z3 and \
+            not z3 == 1:
+        z_speed = z3
+
     pygame.draw.polygon(win, (r, g, b),
                         (
-                        ((x1 + x_width / 2 - 200) + (cameraX / ((z1.__abs__() / 100) + 1)),
-                         (y1 + y_width / 2 - 200) + (cameraY / ((z1.__abs__() / 100) + 1))),
-                        ((x2 + x_width / 2 - 200) + (cameraX / ((z2.__abs__() / 100) + 1)),
-                         (y2 + y_width / 2 - 200) + (cameraY / ((z2.__abs__() / 100) + 1))),
-                        ((x3 + x_width / 2 - 200) + (cameraX / ((z3.__abs__() / 100) + 1)),
-                         (y3 + y_width / 2 - 200) + (cameraY / ((z3.__abs__() / 100) + 1)))
+                        ((x1 + x_width / 2 - 200) + (cameraX / ((z1.__abs__() / z_speed) + 1)),
+                         (y1 + y_width / 2 - 200) + (cameraY / ((z1.__abs__() / z_speed) + 1))),
+                        ((x2 + x_width / 2 - 200) + (cameraX / ((z2.__abs__() / z_speed) + 1)),
+                         (y2 + y_width / 2 - 200) + (cameraY / ((z2.__abs__() / z_speed) + 1))),
+                        ((x3 + x_width / 2 - 200) + (cameraX / ((z3.__abs__() / z_speed) + 1)),
+                         (y3 + y_width / 2 - 200) + (cameraY / ((z3.__abs__() / z_speed) + 1)))
                         ))
 
 
@@ -41,28 +61,20 @@ while run:
     if keys[pygame.K_s] or keys[pygame.K_DOWN]:
         cameraY = cameraY + vel
 
-    #top
     if cameraY >= 40:
-        vertices(120, 120, 200, 280, 120, 200, 100, 100, 0, 255, 0, 0)
-        vertices(100, 100, 0, 280, 120, 200, 300, 100, 0, 0, 0, 255)
-    #top end
-    #bottom
-    #if cameraY <= -60:
-
-    #bottom end
-    #left
-    #if cameraX >= 60:
-
-    #left end
-    #right
+        vertices(120, 120, 200, 280, 120, 200, 100, 100, 1, 255, 0, 0, 0, 0, 0)
+        vertices(100, 100, 1, 280, 120, 200, 300, 100, 1, 0, 0, 255, 0, 0, 0)
+    if cameraY <= -40:
+        vertices(100, 300, 1, 300, 300, 1, 120, 280, 200, 255, 0, 0, 0, 0, 0)
+        vertices(120, 280, 200, 300, 300, 1, 280, 280, 200, 0, 0, 255, 0, 0, 0)
+    if cameraX >= 35:
+        vertices(120, 120, 200, 100, 100, 1, 120, 280, 200, 255, 0, 0, 0, 0, 0)
+        vertices(120, 280, 200, 100, 100, 1, 100, 300, 1, 0, 0, 255, 0, 0, 0)
     if cameraX <= -35:
-        vertices(300, 100, 0, 280, 120, 200, 300, 300, 0, 255, 0, 0)
-        vertices(300, 300, 0, 280, 120, 200, 280, 280, 200, 0, 0, 255)
-    #right end
-    #front
-    vertices(100, 100, 0, 300, 100, 0, 100, 300, 0, 255, 0, 0)
-    vertices(100, 300, 0, 300, 100, 0, 300, 300, 0, 0, 0, 255)
-    #front end
+        vertices(300, 100, 1, 280, 120, 200, 300, 300, 1, 255, 0, 0, 0, 0, 0)
+        vertices(300, 300, 1, 280, 120, 200, 280, 280, 200, 0, 0, 255, 0, 0, 0)
+    vertices(100, 100, 1, 300, 100, 1, 100, 300, 1, 255, 0, 0, 0, 0, 0)
+    vertices(100, 300, 1, 300, 100, 1, 300, 300, 1, 0, 0, 255, 0, 0, 0)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
