@@ -12,15 +12,11 @@ cameraY = 0
 vel = 5
 
 
-def vertices(x, y, z):
-    pygame.draw.polygon(win, (255, 0, 0),
-                        ((120 + (cameraX / 1.5), 120 + (cameraY / 1.5)),
-                         (280 + (cameraX / 1.5), 120 + (cameraY / 1.5)),
-                         (100 + (cameraX / 1.5), 100 + (cameraY / 1.5))))
-    pygame.draw.polygon(win, (0, 0, 255),
-                        ((100 + cameraX, 100 + cameraY),
-                         (280 + (cameraX / 1.5), 120 + (cameraY / 1.5)),
-                         (300 + cameraX, 100 + cameraY)))
+def vertices(x1, y1, z1, x2, y2, z2, x3, y3, z3, r, g, b):
+    pygame.draw.polygon(win, (r, g, b),
+                        (((x1 - z1) + (cameraX / (z1 / 10)), (y1 - z1) + (cameraY / (z1 / 10))),
+                         ((x2 - z2) + (cameraX / (z2 / 10)), (y2 - z2) + (cameraY / (z2 / 10))),
+                         ((x3 - z3) + (cameraX / (z3 / 10)), (y3 - z3) + (cameraY / (z3 / 10)))))
 
 
 run = True
