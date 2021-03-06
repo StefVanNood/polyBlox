@@ -5,7 +5,7 @@ x_screen = 500
 y_screen = 500
 
 win = pygame.display.set_mode((x_screen, y_screen), pygame.RESIZABLE)
-pygame.display.set_caption("doodle")
+pygame.display.set_caption("polyBlox")
 
 cameraX = 0
 cameraY = 0
