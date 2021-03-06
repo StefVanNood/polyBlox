@@ -25,6 +25,7 @@ for Value in f.split():
         i = 0
     i = i + 1
 print(object1[0])
+print(len(object1))
 
 
 def vertices(x1, y1, z1, x2, y2, z2, x3, y3, z3, r, g, b, x, y):
@@ -61,6 +62,39 @@ def vertices(x1, y1, z1, x2, y2, z2, x3, y3, z3, r, g, b, x, y):
                         ))
 
 
+def render_object():
+    for z in range(len(object1)):
+        if z == 0 or z == 1:
+            if cameraY >= 40:
+                vertices(object1[z][0], object1[z][1], object1[z][2],
+                         object1[z][3], object1[z][4], object1[z][5],
+                         object1[z][6], object1[z][7], object1[z][8],
+                         object1[z][9], object1[z][10], object1[z][11], object1[z][12], object1[z][13])
+        if z == 2 or z == 3:
+            if cameraY <= -40:
+                vertices(object1[z][0], object1[z][1], object1[z][2],
+                         object1[z][3], object1[z][4], object1[z][5],
+                         object1[z][6], object1[z][7], object1[z][8],
+                         object1[z][9], object1[z][10], object1[z][11], object1[z][12], object1[z][13])
+        if z == 4 or z == 5:
+            if cameraX >= 35:
+                vertices(object1[z][0], object1[z][1], object1[z][2],
+                         object1[z][3], object1[z][4], object1[z][5],
+                         object1[z][6], object1[z][7], object1[z][8],
+                         object1[z][9], object1[z][10], object1[z][11], object1[z][12], object1[z][13])
+        if z == 6 or z == 7:
+            if cameraX <= -35:
+                vertices(object1[z][0], object1[z][1], object1[z][2],
+                         object1[z][3], object1[z][4], object1[z][5],
+                         object1[z][6], object1[z][7], object1[z][8],
+                         object1[z][9], object1[z][10], object1[z][11], object1[z][12], object1[z][13])
+        if z == 8 or z == 9:
+            vertices(object1[z][0], object1[z][1], object1[z][2],
+                     object1[z][3], object1[z][4], object1[z][5],
+                     object1[z][6], object1[z][7], object1[z][8],
+                     object1[z][9], object1[z][10], object1[z][11], object1[z][12], object1[z][13])
+
+
 run = True
 while run:
     win.fill((0, 0, 0))
@@ -76,27 +110,11 @@ while run:
     if keys[pygame.K_s] or keys[pygame.K_DOWN]:
         cameraY = cameraY + vel
 
-    if cameraY >= 40:
-        vertices(object1[0][0], object1[0][1], object1[0][2],
-                 object1[0][3], object1[0][4], object1[0][5],
-                 object1[0][6], object1[0][7], object1[0][8],
-                 object1[0][9], object1[0][10], object1[0][11], object1[0][12], object1[0][13])
-        vertices(100, 100, 1, 280, 120, 200, 300, 100, 1, 0, 0, 255, 0, 0)
-    if cameraY <= -40:
-        vertices(100, 300, 1, 300, 300, 1, 120, 280, 200, 255, 0, 0, 0, 0)
-        vertices(120, 280, 200, 300, 300, 1, 280, 280, 200, 0, 0, 255, 0, 0)
-    if cameraX >= 35:
-        vertices(120, 120, 200, 100, 100, 1, 120, 280, 200, 255, 0, 0, 0, 0)
-        vertices(120, 280, 200, 100, 100, 1, 100, 300, 1, 0, 0, 255, 0, 0)
-    if cameraX <= -35:
-        vertices(300, 100, 1, 280, 120, 200, 300, 300, 1, 255, 0, 0, 0, 0)
-        vertices(300, 300, 1, 280, 120, 200, 280, 280, 200, 0, 0, 255, 0, 0)
-    vertices(100, 100, 1, 300, 100, 1, 100, 300, 1, 255, 0, 0, 0, 0)
-    vertices(100, 300, 1, 300, 100, 1, 300, 300, 1, 0, 0, 255, 0, 0)
+    render_object()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
     pygame.display.update()
 pygame.quit()
-print("done")
+print("stopped")
