@@ -13,9 +13,7 @@ vel = 5
 
 object1 = []
 row = []
-
 i = 1
-
 f = open("cube").read()
 for Value in f.split():
     row.append(int(Value))
@@ -26,6 +24,20 @@ for Value in f.split():
     i = i + 1
 print(object1[0])
 print(len(object1))
+
+object2 = []
+row = []
+i = 1
+f = open("pyramid").read()
+for Value in f.split():
+    row.append(int(Value))
+    if i == 10:
+        object2.append(row)
+        row = []
+        i = 0
+    i = i + 1
+print(object2[0])
+print(len(object2))
 
 
 def vertices(x1, y1, z1, x2, y2, z2, x3, y3, z3, r, g, b, x, y):
