@@ -4,7 +4,7 @@ pygame.init()
 x_screen = 500
 y_screen = 500
 
-win = pygame.display.set_mode((x_screen, y_screen))
+win = pygame.display.set_mode((x_screen, y_screen), pygame.RESIZABLE)
 pygame.display.set_caption("doodle")
 
 cameraX = 0
@@ -26,20 +26,20 @@ while run:
     if keys[pygame.K_s] or keys[pygame.K_DOWN]:
         cameraY = cameraY + vel
 
-    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 100), (300 + (cameraX / 2), 100))
-    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 100), (100 + (cameraX / 2), 300))
-    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 300), (300 + (cameraX / 2), 300))
-    pygame.draw.line(win, (255, 255, 255), (300 + cameraX, 300), (300 + (cameraX / 2), 100))
+    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 100), (300 + cameraX, 100))
+    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 100), (100 + cameraX, 300))
+    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 300), (300 + cameraX, 300))
+    pygame.draw.line(win, (255, 255, 255), (300 + cameraX, 300), (300 + cameraX, 100))
 
-    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 100), (120 + (cameraX / 2), 120))
-    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 300), (120 + (cameraX / 2), 280))
-    pygame.draw.line(win, (255, 255, 255), (300 + cameraX, 300), (280 + (cameraX / 2), 280))
-    pygame.draw.line(win, (255, 255, 255), (300 + cameraX, 100), (280 + (cameraX / 2), 120))
+    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 100), (120 + (cameraX / 1.5), 120))
+    pygame.draw.line(win, (255, 255, 255), (100 + cameraX, 300), (120 + (cameraX / 1.5), 280))
+    pygame.draw.line(win, (255, 255, 255), (300 + cameraX, 300), (280 + (cameraX / 1.5), 280))
+    pygame.draw.line(win, (255, 255, 255), (300 + cameraX, 100), (280 + (cameraX / 1.5), 120))
 
-    pygame.draw.line(win, (255, 255, 255), (120 + cameraX, 120), (280 + (cameraX / 2), 120))
-    pygame.draw.line(win, (255, 255, 255), (120 + cameraX, 120), (120 + (cameraX / 2), 280))
-    pygame.draw.line(win, (255, 255, 255), (120 + cameraX, 280), (280 + (cameraX / 2), 280))
-    pygame.draw.line(win, (255, 255, 255), (280 + cameraX, 280), (280 + (cameraX / 2), 120))
+    pygame.draw.line(win, (255, 255, 255), (120 + (cameraX / 1.5), 120), (280 + (cameraX / 1.5), 120))
+    pygame.draw.line(win, (255, 255, 255), (120 + (cameraX / 1.5), 120), (120 + (cameraX / 1.5), 280))
+    pygame.draw.line(win, (255, 255, 255), (120 + (cameraX / 1.5), 280), (280 + (cameraX / 1.5), 280))
+    pygame.draw.line(win, (255, 255, 255), (280 + (cameraX / 1.5), 280), (280 + (cameraX / 1.5), 120))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
