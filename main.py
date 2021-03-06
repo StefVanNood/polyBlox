@@ -13,14 +13,17 @@ vel = 5
 
 
 def vertices(x1, y1, z1, x2, y2, z2, x3, y3, z3, r, g, b):
-
+    surface = pygame.display.get_surface()
+    x_width, y_width = size = surface.get_width(), surface.get_height()
     pygame.draw.polygon(win, (r, g, b),
-                        (((x1 - z1) + (cameraX / ((z1.__abs__() / 10) + 1)),
-                          (y1 - z1) + (cameraY / ((z1.__abs__() / 10) + 1))),
-                        ((x2 - z2) + (cameraX / ((z2.__abs__() / 10) + 1)),
-                         (y2 - z2) + (cameraY / ((z2.__abs__() / 10) + 1))),
-                        ((x3 - z3) + (cameraX / ((z3.__abs__() / 10) + 1)),
-                         (y3 - z3) + (cameraY / ((z3.__abs__() / 10) + 1)))))
+                        (
+                        ((x1 + x_width / 2) + (cameraX / ((z1.__abs__() / 100) + 1)),
+                         (y1 + y_width / 2) + (cameraY / ((z1.__abs__() / 100) + 1))),
+                        ((x2 + x_width / 2) + (cameraX / ((z2.__abs__() / 100) + 1)),
+                         (y2 + y_width / 2) + (cameraY / ((z2.__abs__() / 100) + 1))),
+                        ((x3 + x_width / 2) + (cameraX / ((z3.__abs__() / 100) + 1)),
+                         (y3 + y_width / 2) + (cameraY / ((z3.__abs__() / 100) + 1)))
+                        ))
 
 
 run = True
@@ -39,8 +42,9 @@ while run:
         cameraY = cameraY + vel
 
     #top
-    #if cameraY >= 60:
-
+    if cameraY >= 60:
+        vertices(100, 100, 200, 300, 100, 200, 100, 100, 0, 255, 0, 0)
+        vertices(100, 100, 0, 300, 100, 200, 300, 100, 0, 0, 0, 255)
     #top end
     #bottom
     #if cameraY <= -60:
@@ -52,8 +56,8 @@ while run:
     #left end
     #right
     if cameraX <= -35:
-        vertices(300, 100, 0, 300, 100, 20, 300, 300, 0, 255, 0, 0)
-        vertices(300, 300, 0, 300, 100, 20, 300, 300, 20, 0, 0, 255)
+        vertices(300, 100, 0, 300, 100, 200, 300, 300, 0, 255, 0, 0)
+        vertices(300, 300, 0, 300, 100, 200, 300, 300, 200, 0, 0, 255)
     #right end
     #front
     vertices(100, 100, 0, 300, 100, 0, 100, 300, 0, 255, 0, 0)
