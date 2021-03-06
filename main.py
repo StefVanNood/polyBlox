@@ -11,6 +11,21 @@ cameraX = 0
 cameraY = 0
 vel = 5
 
+object1 = []
+row = []
+
+i = 1
+
+f = open("cube").read()
+for Value in f.split():
+    row.append(int(Value))
+    if i == 14:
+        object1.append(row)
+        row = []
+        i = 0
+    i = i + 1
+print(object1[0])
+
 
 def vertices(x1, y1, z1, x2, y2, z2, x3, y3, z3, r, g, b, x, y):
     surface = pygame.display.get_surface()
@@ -62,7 +77,10 @@ while run:
         cameraY = cameraY + vel
 
     if cameraY >= 40:
-        vertices(120, 120, 200, 280, 120, 200, 100, 100, 1, 255, 0, 0, 0, 0)
+        vertices(object1[0][0], object1[0][1], object1[0][2],
+                 object1[0][3], object1[0][4], object1[0][5],
+                 object1[0][6], object1[0][7], object1[0][8],
+                 object1[0][9], object1[0][10], object1[0][11], object1[0][12], object1[0][13])
         vertices(100, 100, 1, 280, 120, 200, 300, 100, 1, 0, 0, 255, 0, 0)
     if cameraY <= -40:
         vertices(100, 300, 1, 300, 300, 1, 120, 280, 200, 255, 0, 0, 0, 0)
