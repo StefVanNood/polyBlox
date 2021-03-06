@@ -7,10 +7,13 @@ y_screen = 500
 win = pygame.display.set_mode((x_screen, y_screen), pygame.RESIZABLE)
 pygame.display.set_caption("polyBlox")
 
+skyBox = pygame.image.load('images/skyBox.jpeg').convert_alpha(win)
+pygame.transform.scale(skyBox, (1000, 1000))
+
 cameraX = 0
 cameraY = 0
 cameraZ = 0
-vel = 5
+vel = 3
 
 object1 = []
 row = []
@@ -67,7 +70,7 @@ def render_object1(color_r, color_g, color_b, location_x, location_y):
                 vertices(object1[z][0], object1[z][1], object1[z][2],
                          object1[z][3], object1[z][4], object1[z][5],
                          object1[z][6], object1[z][7], object1[z][8],
-                         color_r - 100, color_g - 200, color_b - 200,
+                         color_r - 100, color_g - 100, color_b - 100,
                          location_x, location_y)
         if object1[z][9] == 2:
             if cameraX >= 40:
@@ -105,7 +108,7 @@ def render_object2(color_r, color_g, color_b, location_x, location_y):
                 vertices(object2[z][0], object2[z][1], object2[z][2],
                          object2[z][3], object2[z][4], object2[z][5],
                          object2[z][6], object2[z][7], object2[z][8],
-                         color_r - 100, color_g - 200, color_b - 200,
+                         color_r - 100, color_g - 100, color_b - 100,
                          location_x, location_y)
         if object2[z][9] == 2:
             if cameraX >= 40:
@@ -131,8 +134,9 @@ def render_object2(color_r, color_g, color_b, location_x, location_y):
 
 run = True
 while run:
-    win.fill((0, 0, 0))
-    pygame.time.delay(16)
+    win.fill((100, 100, 100))
+    pygame.time.delay(10)
+    win.blit(skyBox, (0, 0))
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_a] or keys[pygame.K_LEFT]:
@@ -144,8 +148,8 @@ while run:
     if keys[pygame.K_s] or keys[pygame.K_DOWN]:
         cameraY = cameraY - vel
 
-    render_object1(100, 255, 255, 0, 0)
-    render_object2(100, 255, 255, -200, -400)
+    render_object1(255, 100, 100, 0, 0)
+    render_object2(255, 100, 100, -200, -400)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
