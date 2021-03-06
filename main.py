@@ -9,7 +9,7 @@ pygame.display.set_caption("doodle")
 
 run = True
 while run:
-    win.fill((0, 0, 0))
+    win.fill((255, 255, 255))
     pygame.time.delay(16)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
